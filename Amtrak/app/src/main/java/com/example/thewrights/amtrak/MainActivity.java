@@ -1,5 +1,7 @@
 package com.example.thewrights.amtrak;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -65,5 +67,57 @@ public class MainActivity extends ActionBarActivity {
         editor.commit();
         Intent intent = new Intent(this, DisplayMessage.class);
         startActivity(intent);
+    }
+
+    public void validateData(View view)
+    {
+        hours = Integer.parseInt(hour.getText().toString());
+        minutes = Integer.parseInt(minute.getText().toString());
+        tripTimeInMinutes = Integer.parseInt(tripLength.getText().toString());
+        if(hours <= 23)
+        {
+            if(minutes <= 59)
+            {
+                if(tripTimeInMinutes <=1500)
+                {
+                    getArrival(view);
+                }
+                else
+                {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.setMessage("The trip time must be 1500 minutes or less").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.dismiss();
+                        }
+                    }).setTitle("Invalid Trip Length").setIcon(R.drawable.amtraklogo).create();
+                    alert.show();
+                }
+            }
+            else
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("The minutes portion of the time must be less than 60").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setTitle("Invalid Minute").setIcon(R.drawable.amtraklogo).create();
+                alert.show();
+            }
+        }
+        else
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("The hours portion of the time must be less than 24").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.dismiss();
+                }
+            }).setTitle("Invalid Hour").setIcon(R.drawable.amtraklogo).create();
+            alert.show();
+        }
     }
 }

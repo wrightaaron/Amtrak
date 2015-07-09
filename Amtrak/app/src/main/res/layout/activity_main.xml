@@ -19,9 +19,14 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editTxtHour"
-        android:layout_below="@+id/imageView"
         android:numeric="integer"
-        android:hint="Hour" />
+        android:hint="Hour"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/lblLength"
+        android:layout_alignLeft="@+id/edTxtMinute"
+        android:layout_alignStart="@+id/edTxtMinute" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -29,10 +34,14 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/edTxtMinute"
+        android:hint="Minute"
         android:layout_below="@+id/editTxtHour"
-        android:layout_alignRight="@+id/editTxtHour"
-        android:layout_alignEnd="@+id/editTxtHour"
-        android:hint="Minute" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/lblLength"
+        android:layout_alignLeft="@+id/edTxtTripLength"
+        android:layout_alignStart="@+id/edTxtTripLength" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,10 +49,13 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/edTxtTripLength"
+        android:hint="Trip length"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/edTxtMinute"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Trip length in minutes" />
+        android:layout_toRightOf="@+id/lblLength"
+        android:layout_toEndOf="@+id/lblLength"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -53,6 +65,36 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="71dp"
-        android:onClick="getArrival" />
+        android:onClick="validateData" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Departing Hour"
+        android:id="@+id/lblHour"
+        android:layout_alignBottom="@+id/editTxtHour"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Departing Minute"
+        android:id="@+id/lblMinute"
+        android:layout_alignBottom="@+id/edTxtMinute"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Trip length in minutes"
+        android:id="@+id/lblLength"
+        android:layout_alignBottom="@+id/edTxtTripLength"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

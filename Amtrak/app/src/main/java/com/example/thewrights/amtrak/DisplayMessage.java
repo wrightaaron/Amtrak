@@ -1,5 +1,7 @@
 package com.example.thewrights.amtrak;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -66,7 +68,16 @@ public class DisplayMessage extends ActionBarActivity {
         {
             if(arrivalHour < 31)
             {
-                //Red Eye Arrival
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("This train has a Red Eye arrival time").setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.dismiss();
+                    }
+                }).setTitle("Red Eye").setIcon(R.drawable.amtraklogo).create();
+                alert.show();
             }
             arrivalHour = arrivalHour - 24;
         }
