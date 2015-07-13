@@ -66,7 +66,8 @@ public class DisplayMessage extends ActionBarActivity {
         int arrivalMinute = arriveInMinutes % 60;
         if(arrivalHour > 23)
         {
-            if(arrivalHour < 31)
+            //RedEye flight typically leaves after 9 pm and arrives before 5 am
+            if(arrivalHour < 30 && timeInMinutes > 1260)
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setMessage("This train has a Red Eye arrival time").setPositiveButton("Ok", new DialogInterface.OnClickListener()
@@ -76,7 +77,7 @@ public class DisplayMessage extends ActionBarActivity {
                     {
                         dialog.dismiss();
                     }
-                }).setTitle("Red Eye").setIcon(R.drawable.amtraklogo).create();
+                }).setTitle("Red Eye").setIcon(R.mipmap.redeye).create();
                 alert.show();
             }
             arrivalHour = arrivalHour - 24;
